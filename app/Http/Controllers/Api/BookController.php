@@ -43,8 +43,6 @@ class BookController extends Controller
     public function deleteBook($id)
     {
         // user id
-        // book id
-        // books table
         $user_id = auth()->user()->id;
 
         if (Book::where([
@@ -79,16 +77,13 @@ class BookController extends Controller
     // UPDATE BOOK API - UPDATE
     public function editBook(Request $request, $id)
     {
-        // user id
-        // book id
-        // books table
         // validation
         $request->validate([
             "title" => "min:1|max:200",
-            "description" => "min:1",
-            "isbn" => "min:4|max:13|unique:books",
-        ]);
+            "description" => "min:1"
 
+        ]);
+        // user id
         $user_id = auth()->user()->id;
 
         if (Book::where([
@@ -100,7 +95,7 @@ class BookController extends Controller
 
             $book->title = !empty($request->title) ? $request->title : $book->title;
             $book->description = !empty($request->description) ? $request->description : $book->description;
-            $book->isbn = !empty($request->isbn) ? $request->isbn : $book->isbn;
+
 
             $book->save();
 

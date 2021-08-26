@@ -33,7 +33,7 @@ Route::group(["middleware" => ["auth:api"]], function () {
 
     Route::post("addbook", [BookController::class, "addBook"]);
     Route::put("editbook/{id}", [BookController::class, "editBook"]);
-    Route::get("deletebook/{id}", [BookController::class, "deleteBook"]);
+    Route::delete("deletebook/{id}", [BookController::class, "deleteBook"]);
 });
 
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
