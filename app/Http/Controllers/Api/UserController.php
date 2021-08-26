@@ -21,10 +21,8 @@ class UserController extends Controller
             [
                 'required', 'confirmed', 'max:250', Password::min(7)
                     ->mixedCase()
-
             ],
         ]);
-
 
         //create user data + save
 
@@ -69,12 +67,15 @@ class UserController extends Controller
             "access_token" => $token
         ]);
     }
-    // USER MYBOOKLIST API - GET
-    public function  mybookslist()
-    {
-    }
+
     // USER PROFILE API - GET
     public function logout()
     {
+        auth()->logout();
+
+        return response()->json([
+            "status" => 1,
+            "message" => "user log out"
+        ]);
     }
 }

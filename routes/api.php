@@ -20,19 +20,22 @@ use App\Http\Controllers\Api\OpinionController;
 
 Route::post("register", [UserController::class, "register"]);
 Route::post("login", [UserController::class, "login"]);
+Route::get("listofbooks", [BookController::class, "listofbooks"]);
+Route::get("addopinion/{id}", [OpinionController::class, "addOpinion"]);
+Route::get("bookdetails/{id}", [BookController::class, "bookDetails"]);
 
-Route::group(["middleware" => ["api"]], function () {
+Route::group(["middleware" => ["auth:api"]], function () {
 
-    Route::get("mybookslist", [UserController::class, "mybookslist"]);
+    Route::get("mybookslist", [BookController::class, "mybookslist"]);
     Route::get("logout", [UserController::class, "logout"]);
 
     //  book api routes
 
-    Route::post("addBook", [BookController::class, "addBook"]);
-    Route::get("editBook/{id}", [BookController::class, "editeBook"]);
-    Route::get("deleteBook/{id}", [BookController::class, "deleteBook"]);
+    Route::post("addbook", [BookController::class, "addBook"]);
+    Route::put("editbook/{id}", [BookController::class, "editBook"]);
+    Route::get("deletebook/{id}", [BookController::class, "deleteBook"]);
 });
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
